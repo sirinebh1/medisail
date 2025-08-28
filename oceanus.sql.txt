@@ -1,0 +1,198 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
+--
+-- Client :  127.0.0.1
+-- Généré le :  Mer 03 Mai 2023 à 11:42
+-- Version du serveur :  5.7.14
+-- Version de PHP :  5.6.25
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données :  `oceanus`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `conge`
+--
+
+CREATE TABLE `conge` (
+  `id_role` int(11) NOT NULL,
+  `nom` varchar(30) NOT NULL,
+  `prenom` varchar(30) NOT NULL,
+  `raison` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `conge`
+--
+
+INSERT INTO `conge` (`id_role`, `nom`, `prenom`, `raison`) VALUES
+(5, 'sabrine', 'attia', 'urgence');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `formation`
+--
+
+CREATE TABLE `formation` (
+  `nom` varchar(30) NOT NULL,
+  `prenom` varchar(30) NOT NULL,
+  `id_role` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `formation`
+--
+
+INSERT INTO `formation` (`nom`, `prenom`, `id_role`) VALUES
+('ahlem', 'silimani', 1),
+('sabrine', 'chwaya', 4),
+('sabrine', 'attia', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `role_user`
+--
+
+CREATE TABLE `role_user` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `role` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `role_user`
+--
+
+INSERT INTO `role_user` (`id`, `role`) VALUES
+(1, 'INGÉNIEUR(E)'),
+(2, 'développeur'),
+(3, 'assistant(e)'),
+(4, 'DIRECTEUR'),
+(5, 'STAGIAIRE');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `stagiaire`
+--
+
+CREATE TABLE `stagiaire` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(30) NOT NULL,
+  `prenom` varchar(30) NOT NULL,
+  `email` text NOT NULL,
+  `ville` varchar(30) NOT NULL,
+  `pays` varchar(30) NOT NULL,
+  `code` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `stagiaire`
+--
+
+INSERT INTO `stagiaire` (`id`, `nom`, `prenom`, `email`, `ville`, `pays`, `code`) VALUES
+(1, 'sabrine', 'attia', 'sabrineattia@gmail.com', 'gafsa', 'tunisie', 2100);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE `user` (
+  `id_user` int(10) NOT NULL,
+  `nom` varchar(255) DEFAULT NULL,
+  `prenom` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `ville` varchar(255) DEFAULT NULL,
+  `etat` varchar(255) DEFAULT NULL,
+  `code` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `id_role` int(10) NOT NULL DEFAULT '0',
+  `img` varchar(255) DEFAULT NULL,
+  `date_ambuche` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`id_user`, `nom`, `prenom`, `email`, `ville`, `etat`, `code`, `id_role`, `img`, `date_ambuche`) VALUES
+(2, 'ala', 'sh', 'alash@gamil.com', 'gafsa', 'tunisie', 2100, 2, 'ala.jpg', '2023-04-30 20:00:36'),
+(3, 'gadour', 'larbi', 'gadourlarbi', 'gafsa', 'tunisie', 2100, 4, 'gadour.jpg', '2023-04-30 20:02:31'),
+(4, 'ahlem', 'silimani', 'ahlemsilimani@gmail.com', 'gafsa', 'tunisie', 2100, 3, 'ahlem.jpg', '2023-04-30 20:04:29'),
+(1, 'sabrine', 'chwaya', 'sabrinechwaya@gmail.com', 'gafsa', 'tunisie', 2100, 1, 'sabrine.jpg', '2023-04-30 23:52:15');
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `conge`
+--
+ALTER TABLE `conge`
+  ADD PRIMARY KEY (`id_role`);
+
+--
+-- Index pour la table `formation`
+--
+ALTER TABLE `formation`
+  ADD PRIMARY KEY (`id_role`);
+
+--
+-- Index pour la table `role_user`
+--
+ALTER TABLE `role_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `stagiaire`
+--
+ALTER TABLE `stagiaire`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `formation`
+--
+ALTER TABLE `formation`
+  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT pour la table `role_user`
+--
+ALTER TABLE `role_user`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT pour la table `stagiaire`
+--
+ALTER TABLE `stagiaire`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
